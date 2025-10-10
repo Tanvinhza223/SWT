@@ -4,10 +4,16 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AccountServiceTest {
-    private final AccountService service = new AccountService();
 
+
+    AccountService service;
+
+    @BeforeAll
+    void initOnce() {
+        service = new AccountService();
+    }
     @DisplayName(" registration ")
     @ParameterizedTest(name = "[{index}] username={0}, password={1}, email={2} => expected={3}")
     @CsvFileSource(resources = "/test-data.csv", numLinesToSkip = 1)
@@ -23,4 +29,5 @@ public class AccountServiceTest {
         Assertions.assertFalse(service.isValidEmail("bad.com"));
         Assertions.assertFalse(service.isValidEmail(null));
     }
+
 }
