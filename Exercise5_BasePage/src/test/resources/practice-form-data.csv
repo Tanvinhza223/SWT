@@ -1,0 +1,7 @@
+firstName,lastName,email,gender,mobile,expected
+Minh,Nguyen,minh.nguyen@example.com,Male,0987654321,success
+Minh,Nguyen,, ,0987654321,error
+,Nguyen,a@b.com,Male,0987654321,error
+Minh,,a@b.com,Male,0987654321,error
+Minh,Nguyen,a@b.com,Male,12345,error
+Minh,Nguyen,not-an-email,Male,0987654321,error
